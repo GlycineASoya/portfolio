@@ -1,0 +1,6 @@
+site_name: Ilya | Senior DevOps Engineer
+site_url: https://GlycineASoya.github.io/portfolio/
+theme:
+  name: material
+  palette:
+    scheme: slate
