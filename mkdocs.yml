@@ -4,3 +4,10 @@ theme:
   name: material
   palette:
     scheme: slate
+
+nav:
+  - Home: index.md
+  - Experience: experience.md
+  - Projects & AI: projects.md
+  - Homelab & Hardware: hardware.md
+  - About Me: about.md

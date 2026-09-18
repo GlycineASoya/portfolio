@@ -1,17 +1,12 @@
-# Welcome to MkDocs
+# Hi, I'm Ilya
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+**Senior DevOps Engineer | Cloud & Platform Architecture | AI Enthusiast**
 
-## Commands
+I specialize in building robust cloud infrastructure, automating deployment pipelines, and integrating AI tools into development workflows. Currently based in Kraków, I focus on scalable platform engineering using GCP, Kubernetes (AKS), Terraform, and Python.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+My engineering approach blends deep networking fundamentals with modern automation, ensuring resilient and secure systems.
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## Core Stack
+* **Cloud & Orchestration:** Kubernetes (AKS), Google Cloud Platform (GCP), Docker, Helm
+* **IaC & Automation:** Terraform, Python, Bash
+* **AI & Tooling:** Local LLMs (Ollama), FastAPI, Chainlit, NeMo Guardrails
