@@ -2,6 +2,10 @@
     display: none !important;
 }
 
+.md-sidebar--primary {
+    display: none !important;
+}
+
 @media screen and (max-width: 76.1875em) {
     .md-tabs {
         display: block !important;
