@@ -1,13 +1,16 @@
-site_name: Ilya | Senior DevOps Engineer
-site_url: https://GlycineASoya.github.io/portfolio/
+site_name: Ilia | Senior DevOps Engineer
+site_url: !ENV [SITE_URL, "http://127.0.0.1:8000/"]
+
 theme:
   name: material
   palette:
     scheme: slate
+  features:
+    - navigation.instant
+    - navigation.tracking
 
-nav:
-  - Home: index.md
-  - Experience: experience.md
-  - Projects & AI: projects.md
-  - Homelab & Hardware: hardware.md
-  - About Me: about.md
+markdown_extensions:
+  - attr_list
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
