@@ -1,0 +1,23 @@
+.md-header__button[for="__drawer"] {
+    display: none !important;
+}
+
+@media screen and (max-width: 76.1875em) {
+    .md-tabs {
+        display: block !important;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .md-tabs__list {
+        display: flex;
+        flex-wrap: nowrap;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .md-tabs__item {
+        flex-shrink: 0;
+    }
+}
