@@ -6,8 +6,18 @@ theme:
   palette:
     scheme: slate
   features:
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.instant
-    - navigation.tracking
+
+extra_css:
+  - stylesheets/custom.css
+
+nav:
+  - Home: index.md
+  - Experience: experience.md
+  - Projects & AI: projects.md
+  - Homelab: hardware.md
 
 markdown_extensions:
   - attr_list
