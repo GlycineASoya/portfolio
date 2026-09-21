@@ -6,6 +6,19 @@
     display: none !important;
 }
 
+.md-sidebar--secondary {
+    display: none !important;
+}
+
+.md-main__inner {
+    justify-content: center;
+}
+
+.md-content {
+    max-width: 800px;
+    width: 100%;
+}
+
 @media screen and (max-width: 76.1875em) {
     .md-tabs {
         display: block !important;
