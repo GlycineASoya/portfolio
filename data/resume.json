@@ -1,0 +1,151 @@
+{
+  "personal": {
+    "name": "ILIA LEVINSKII",
+    "role": "DevOps Engineer",
+    "location": "Cracow, Poland",
+    "email": "ivlevinsky@gmail.com",
+    "phone": "+48-518-579-606",
+    "linkedin": "www.linkedin.com/in/ilia-levinskii/"
+  },
+  "summary": "I am a DevOps Engineer, working in fintech environments with high requirements for automation, reliability, and compliance. My work focuses on building and operating infrastructure and delivery systems that support development teams, reduce operational risk, and align engineering practices with business objectives.",
+  "skills": {
+    "IaC": ["Terraform", "Helm"],
+    "CICD": ["GitHub Actions", "GitOps", "CI CD", "Jenkins"],
+    "Containers": ["Kubernetes", "Docker"],
+    "Languages": ["Python", "Bash"],
+    "Testing": ["Locust"],
+    "Monitoring": ["New Relic", "Cloud Central Logging"],
+    "DevSecOps": ["GitHub CodeQL (SAST)", "Secret Scanning (GitHub)", "Veracode Scan", "Kubernetes Extrernal Secrets", "Linters", "Dependabot", "Checkoy (SAST)"]
+  },
+  "certifications": [
+    "CKAD Certified Kubernetes Application Developer (LF-q7o7s82rnt)",
+    "AWS Cloud Practitioner (KVSP1JYLNE41QCCV)",
+    "AWS AI Practitioner (b3f43c46cdc0432c89a8396807ded01c)",
+    "HashiCorp Certified: Terraform Associate (002)",
+    "CCNP Routing and Switching (JH77MYTL9LR11BCY)",
+    "GCP Associate Cloud Engineer (pdRoki)"
+  ],
+  "languages": ["English", "Polish", "Russian"],
+  "education": {
+    "degree": "Master's Degree",
+    "years": "2009-2014",
+    "institution": "South Ural State University"
+  },
+  "experience": [
+    {
+      "title": "Senior DevOps Engineer",
+      "company": "GFT Technologies",
+      "location": "Cracow, Poland",
+      "startDate": "04/2023",
+      "endDate": "Present",
+      "projects": [
+        {
+          "name": "Senior DevOps engineer and Python developer for fintech Al internal tooling project",
+          "achievements": [
+            "Designed and implemented a FastAPI application skeleton for a PoC AI Chatbot, establishing the architectural foundation for ML model interactions and scalability.",
+            "Engineered a custom Bash-based build and release system, automating versioning, and managing separated deployment strategies for feature branches, main, and production releases.",
+            "Implemented systemd service for the application to ensure stability, reliability, and disaster recovery mechanism"
+          ]
+        },
+        {
+          "name": "Senior DevOps for fintech microservice project",
+          "achievements": [
+            "Developed a centralized CI/CD monorepository for GitHub Actions pipelines, reducing implementation and maintenance time across 20+ repositories multi-fold.",
+            "Led the resolution of a GitHub runner Docker issue through effective collaboration with the support team, restoring build stability for product images.",
+            "Automated cleanup of outdated GCP Dataflow jobs through a scheduled GitHub and Bash-based solution, cutting unnecessary cloud costs and resource usage.",
+            "Designed and deployed a Bash-driven Jira-GitHub synchronization solution using REST APIs, streamlining release candidate selection and improving traceability between commits and tickets.",
+            "Developed and maintained Locust-based Load and Performance Testing framework in Python, proactively detecting bottlenecks and architectural flaws before production rollouts.",
+            "Enhanced logging and observability within the Locust performance testing framework, improving log readability and reducing troubleshooting time tenfold.",
+            "Automated post-Locust test result analysis, reducing manual reporting effort tenfold and accelerating performance validation cycles.",
+            "Implemented and maintained automated code analysis workflows in GitHub Actions, enforcing secure coding standards and improving codebase",
+            "Owned secret exposure resolution, including identification, rotation, remediation, and documentation of incidents following security policies and procedures."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "DevOps Engineer",
+      "company": "GFT Technologies",
+      "location": "Cracow, Poland",
+      "startDate": "03/2022",
+      "endDate": "03/2023",
+      "projects": [
+        {
+          "name": "DevOps for fintech project",
+          "achievements": [
+            "Resolved Kubernetes External Secrets synchronization and Stakater operator issues, ensuring stable and performance cluster workload behavior.",
+            "Utilized Terraform Enterprise to design, provision, and maintain Infrastructure as Code (IaC) for GCP resources, improving maintainability and traceability of infrastructure changes.",
+            "Implemented New Relic dashboards and alerting policies, starting real-time observability and reducing mean time to detect (MTTD) incidents."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "DevOps Engineer",
+      "company": "Philip Morris International",
+      "location": "Cracow, Poland",
+      "startDate": "03/2021",
+      "endDate": "02/2022",
+      "projects": [
+        {
+          "name": "A platform owner for the Data Engineers",
+          "achievements": [
+            "Developed a Bash-driven systemd service and timer to automatically remove obsolete Docker overlay files, optimizing disk usage and system performance.",
+            "Implemented Jenkins automation for BridgeCrew Checkov to enforce Terraform security compliance, proactively identifying and mitigating misconfigurations.",
+            "Extended BridgeCrew Checkov functionality with a custom Python utility, enabling retrieval of additional compliance data from the Checkov knowledge base.",
+            "Created a Jenkins automation job executing a Boto3-based script to verify EC2 instance health for Hadoop cluster nodes, decreasing MTTD.",
+            "Developed an Ansible role to propagate SASL JAAS configuration across Kafka brokers, improving authentication consistency and deployment speed.",
+            "Enhanced existing Ansible roles for third-party security agents on AWS EC2 instances, ensuring compatibility and streamlined configuration management.",
+            "Integrated AWS EMR Hadoop logs with ELK Stack, applying multiple ingestion approaches to improve observability and centralized logging.",
+            "Implemented RDS data replication and migration using AWS DMS and database-native utilities, ensuring data consistency and minimal downtime.",
+            "Recovered EC2-based CentOS environments by restoring the mounting sequence and system boot capability after hardware failures.",
+            "Restored Airflow, NiFi, and Hadoop authentication functionality, reducing downtime and ensuring service continuity."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Software Engineer",
+      "company": "Cisco (AppDynamics)",
+      "location": "Cracow, Poland",
+      "startDate": "09/2020",
+      "endDate": "02/2021",
+      "projects": [
+        {
+          "name": "A support engineer with enhanced access to product internals",
+          "achievements": [
+            "Docker (Swarm, Compose), AWS (EC2, RDS, AMI, SG), Bash, Linux, AppDynamics, Jira, Confluence, MySQL, MSSQL, Oracle RAC, PostgreSQL, EVE-NG"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Customer Support Engineer",
+      "company": "Cisco",
+      "location": "Cracow, Poland",
+      "startDate": "08/2018",
+      "endDate": "08/2020",
+      "projects": [
+        {
+          "name": "A point of contact for Webex solution and a technical liaison for business unit",
+          "achievements": [
+            "WebEx, VoIP, TLS/SSL, XML/JSON/YAML, Docker, AWS, Hybrid Data Security, Jabber, CUCM, CALO/dCloud VMs, Linux/Unix troubleshooting"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Network Consulting Engineer",
+      "company": "Cisco",
+      "location": "Dalian, China",
+      "startDate": "10/2017",
+      "endDate": "05/2018",
+      "projects": [
+        {
+          "name": "An Advanced Services point of contact for EMEAR customers",
+          "achievements": []
+        }
+      ]
+    }
+  ]
+}

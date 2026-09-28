@@ -1,0 +1,98 @@
+---
+import '../styles/global.css';
+import resumeData from '../../data/resume.json';
+
+const { personal, summary, skills, certifications, experience, education, languages } = resumeData;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{personal.name} | Resume</title>
+  </head>
+  <body class="bg-white text-gray-900 font-sans min-h-screen p-6 md:p-12">
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- Control panel -->
+      <div class="print:hidden flex justify-between items-center mb-8 pb-4 border-b border-gray-200">
+        <a href="/" class="text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1">
+          <span>←</span> Back to Pipeline UI
+        </a>
+        <button onclick="window.print()" class="px-4 py-2 bg-gray-900 hover:bg-gray-800 text-white text-sm font-semibold rounded-md transition-colors">
+          Print / Save PDF
+        </button>
+      </div>
+
+      <!-- Resume header -->
+      <header class="mb-8">
+        <h1 class="text-4xl font-bold tracking-tight text-gray-900 mb-2">{personal.name}</h1>
+        <h2 class="text-2xl text-gray-600 font-medium mb-4">{personal.role}</h2>
+        <div class="flex flex-wrap gap-4 text-sm text-gray-600">
+          <span class="flex items-center gap-1">📍 {personal.location}</span>
+          <span class="flex items-center gap-1">✉️ {personal.email}</span>
+          <span class="flex items-center gap-1">📱 {personal.phone}</span>
+          <span class="flex items-center gap-1">🔗 {personal.linkedin}</span>
+        </div>
+      </header>
+      
+      <section class="mb-8">
+          <p class="text-sm text-gray-700">{summary}</p>
+      </section>
+
+      <!-- Skills -->
+      <section class="mb-8">
+        <h3 class="text-lg font-bold text-gray-900 uppercase tracking-wider border-b-2 border-gray-900 pb-1 mb-4">Technical Skills</h3>
+        <ul class="list-disc list-inside text-gray-700 grid grid-cols-1 gap-2 text-sm">
+          {Object.entries(skills).map(([category, items]) => (
+            <li><strong>{category}:</strong> {items.join(', ')}</li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- Experience -->
+      <section class="mb-8">
+        <h3 class="text-lg font-bold text-gray-900 uppercase tracking-wider border-b-2 border-gray-900 pb-1 mb-4">Work Experience</h3>
+        
+        {experience.map(job => (
+          <div class="mb-6">
+            <div class="flex justify-between items-baseline mb-1">
+              <h4 class="text-md font-bold text-gray-900">{job.title} | {job.company}</h4>
+              <span class="text-sm font-medium text-gray-600">{job.startDate} — {job.endDate} | {job.location}</span>
+            </div>
+            {job.projects.map(project => (
+                <div class="mb-2">
+                    {project.name && <p class="text-sm italic text-gray-700 mb-1">{project.name}</p>}
+                    <ul class="list-disc list-outside ml-5 text-gray-700 text-sm space-y-1">
+                    {project.achievements.map(achievement => (
+                        <li>{achievement}</li>
+                    ))}
+                    </ul>
+                </div>
+            ))}
+          </div>
+        ))}
+      </section>
+
+      <!-- Certifications -->
+      <section class="mb-8">
+        <h3 class="text-lg font-bold text-gray-900 uppercase tracking-wider border-b-2 border-gray-900 pb-1 mb-4">Certifications</h3>
+        <ul class="list-disc list-inside text-gray-700 text-sm">
+          {certifications.map(cert => (
+            <li>{cert}</li>
+          ))}
+        </ul>
+      </section>
+      
+      <!-- Education and Languages -->
+      <section>
+        <h3 class="text-lg font-bold text-gray-900 uppercase tracking-wider border-b-2 border-gray-900 pb-1 mb-4">Education & Languages</h3>
+        <div class="text-sm text-gray-700 space-y-2">
+          <p><strong>Education:</strong> {education.degree}, {education.institution} ({education.years})</p>
+          <p><strong>Languages:</strong> {languages.join(', ')}</p>
+        </div>
+      </section>
+
+    </div>
+  </body>
+</html>
