@@ -1,17 +1,134 @@
 ---
+import ActionStep from '../components/ActionStep.astro';
+import '../styles/global.css';
+import resumeData from '../../data/resume.json';
 
+const { personal, experience, skills, certifications } = resumeData;
+
+// convertion from MM/YYYY to YYYY-MM-01, 
+const parseDate = (dateStr) => {
+  if (!dateStr || dateStr === 'Present') return null;
+  const [month, year] = dateStr.split('/');
+  return `${year}-${month}-01`;
+};
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{personal.name} | Actions Run</title>
+  </head>
+  <body class="bg-[#0d1117] text-[#c9d1d9] font-mono min-h-screen p-4 md:p-8">
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- Pipeline header -->
+      <div class="border-b border-gray-700 pb-4 mb-6 flex justify-between items-center">
+        <h1 class="text-xl font-bold flex items-center gap-2">
+          <svg class="w-6 h-6 text-green-500" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16A8 8 0 108 0a8 8 0 000 16zm3.78-9.72a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>
+          Ilya_Resume.yml
+        </h1>
+        
+        <div class="flex items-center gap-3">
+          <span class="text-gray-400 text-sm hidden sm:inline mr-2">#1 run successful</span>
+          
+          <a 
+            href="/resume"
+            class="flex items-center gap-2 px-3 py-1.5 text-sm font-semibold bg-[#21262d] hover:bg-[#30363d] border border-gray-600 rounded-md transition-colors select-none"
+          >
+            <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            Classic CV
+          </a>
+          
+          <button 
+            id="print-btn"
+            onclick="window.print()"
+            class="flex items-center gap-2 px-3 py-1.5 text-sm font-semibold bg-[#21262d] hover:bg-[#30363d] border border-gray-600 rounded-md transition-colors cursor-pointer select-none"
+          >
+            <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+            PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- Job 1: Профиль -->
+      <div class="mb-8">
+        <div class="flex items-center space-x-2 mb-4 font-bold text-lg">
+          <span class="text-blue-400">▶</span>
+          <span>Job: checkout_profile</span>
+        </div>
+        
+        <ActionStep title="Run whoami" time="0s" isOpen={true}>
+          <p><span class="text-gray-500">10:00:00Z</span> [INFO] Name: {personal.name}</p>
+          <p><span class="text-gray-500">10:00:01Z</span> [INFO] Role: {personal.role}</p>
+          <p><span class="text-gray-500">10:00:02Z</span> [INFO] Location: {personal.location}</p>
+          <p><span class="text-gray-500">10:00:03Z</span> [INFO] Email: {personal.email}</p>
+          <p><span class="text-gray-500">10:00:04Z</span> [INFO] LinkedIn: {personal.linkedin}</p>
+        </ActionStep>
+      </div>
+
+      <!-- Job 2: Experience -->
+      <div class="mb-8">
+        <div class="flex items-center space-x-2 mb-4 font-bold text-lg">
+          <span class="text-blue-400">▶</span>
+          <span>Job: execute_career_steps</span>
+        </div>
+
+        {experience.map((job) => (
+          <ActionStep 
+            title={`Run ${job.title} @ ${job.company}`}
+            startDate={parseDate(job.startDate)} 
+            endDate={parseDate(job.endDate)}
+            active={job.endDate === 'Present'}
+          >
+            {job.projects.map((project, projIndex) => (
+              <div class="mb-4 last:mb-0">
+                {project.name && (
+                  <p class="text-blue-300 font-semibold mb-1">
+                    # {project.name}
+                  </p>
+                )}
+                {project.achievements.map((achieve, achIndex) => (
+                  <p class="flex items-start">
+                    <span class="text-gray-500 mr-2 min-w-[75px]">10:01:{String(projIndex * 10 + achIndex + 10).padStart(2, '0')}Z</span>
+                    <span class="text-green-400 mr-2 whitespace-nowrap">[SUCCESS]</span>
+                    <span class="flex-1">{achieve}</span>
+                  </p>
+                ))}
+              </div>
+            ))}
+          </ActionStep>
+        ))}
+      </div>
+      
+      <!-- Job 3: Skills and Certifications -->
+      <div class="mt-8">
+        <div class="flex items-center space-x-2 mb-4 font-bold text-lg">
+          <span class="text-blue-400">▶</span>
+          <span>Job: verify_dependencies</span>
+        </div>
+        
+        <ActionStep title="Run analyze_skills.sh" time="2s">
+          {Object.entries(skills).map(([category, items], i) => (
+            <p class="flex items-start">
+              <span class="text-gray-500 mr-2">10:05:{String(i + 10).padStart(2, '0')}Z</span>
+              <span class="text-blue-400 mr-2 whitespace-nowrap">[Skill]</span>
+              <span class="flex-1"><strong>{category}:</strong> {items.join(', ')}</span>
+            </p>
+          ))}
+        </ActionStep>
+
+        <ActionStep title="Run validate_certificates.sh" time="1s">
+          {certifications.map((cert, i) => (
+            <p class="flex items-start">
+              <span class="text-gray-500 mr-2">10:06:{String(i + 10).padStart(2, '0')}Z</span>
+              <span class="text-green-400 mr-2 whitespace-nowrap">[Cert]</span>
+              <span class="flex-1">{cert}</span>
+            </p>
+          ))}
+        </ActionStep>
+      </div>
+
+    </div>
+  </body>
 </html>

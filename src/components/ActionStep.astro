@@ -1,0 +1,69 @@
+---
+const { title, time, active = false, isOpen = false, startDate, endDate } = Astro.props;
+
+let displayTime = time;
+let displayRange = "";
+
+if (startDate) {
+  const start = new Date(startDate);
+
+  const end = endDate ? new Date(endDate) : new Date();
+
+  let years = end.getFullYear() - start.getFullYear();
+  let months = end.getMonth() - start.getMonth();
+  let days = end.getDate() - start.getDate();
+
+  // Adjustment of negative values when crossing a month/year boundary
+  if (days < 0) {
+    months--;
+    const lastMonth = new Date(end.getFullYear(), end.getMonth(), 0);
+    days += lastMonth.getDate();
+  }
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  // String formation
+  if (years === 0 && months === 0) {
+    displayTime = `${days} day${days !== 1 ? 's' : ''}`;
+  } else {
+    let parts = [];
+    if (years > 0) parts.push(`${years} year${years !== 1 ? 's' : ''}`);
+    if (months > 0) parts.push(`${months} month${months !== 1 ? 's' : ''}`);
+    displayTime = parts.join(' ').trim();
+  }
+
+  // Time string formation (example: "Oct 2024 — until now")
+  const opts = { month: 'short', year: 'numeric' };
+  const startStr = start.toLocaleDateString('en-US', opts);
+  const endStr = endDate ? end.toLocaleDateString('en-US', opts) : 'until now';
+  displayRange = `${startStr} — ${endStr}`;
+}
+---
+
+<details class="mb-2 group cursor-pointer" open={isOpen} name="resume-steps">
+  <summary class="flex items-center space-x-3 p-2 hover:bg-[#161b22] rounded transition-colors marker:hidden select-none">
+    {active ? (
+      <span class="relative flex h-4 w-4 ml-0.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-4 w-4 bg-blue-500"></span>
+      </span>
+    ) : (
+      <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8 16A8 8 0 108 0a8 8 0 000 16zm3.78-9.72a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path>
+      </svg>
+    )}
+    <span class="font-semibold text-[#c9d1d9]">{title}</span>
+    <span class="text-gray-500 text-sm ml-auto">{displayTime}</span>
+  </summary>
+  
+  <div class="pl-10 pr-4 py-3 text-sm text-gray-300 border-l border-gray-700 ml-4 space-y-2 cursor-text">
+    {displayRange && (
+      <p class="mb-2 text-blue-300 font-semibold text-xs tracking-wider">
+        [TIMELINE] {displayRange}
+      </p>
+    )}
+    <slot />
+  </div>
+</details>
