@@ -22,7 +22,7 @@ const parseDate = (dateStr) => {
   <body class="bg-[#0d1117] text-[#c9d1d9] font-mono min-h-screen p-4 md:p-8">
     <div class="max-w-4xl mx-auto">
       
-      <!-- Заголовок пайплайна -->
+      <!-- Pipeline header -->
       <div class="border-b border-gray-700 pb-4 mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <h1 class="text-xl font-bold flex items-center gap-2">
           <svg class="w-6 h-6 text-green-500" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16A8 8 0 108 0a8 8 0 000 16zm3.78-9.72a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>
@@ -81,11 +81,26 @@ const parseDate = (dateStr) => {
         </div>
         
         <ActionStep title="Run whoami" time="0s" isOpen={true}>
-          <p><span class="text-gray-500">10:00:00Z</span> [INFO] Name: {personal.name}</p>
-          <p><span class="text-gray-500">10:00:01Z</span> [INFO] Role: {personal.role}</p>
-          <p><span class="text-gray-500">10:00:02Z</span> [INFO] Location: {personal.location}</p>
-          <p><span class="text-gray-500">10:00:03Z</span> [INFO] Email: {personal.email}</p>
-          <p><span class="text-gray-500">10:00:04Z</span> [INFO] LinkedIn: {personal.linkedin}</p>
+          <div class="flex hover:bg-[#161b22] px-2 py-0.5 rounded">
+            <span class="text-gray-600 w-6 text-right select-none mr-3 shrink-0">1</span>
+            <span class="text-gray-300 break-words">Name: {personal.name}</span>
+          </div>
+          <div class="flex hover:bg-[#161b22] px-2 py-0.5 rounded">
+            <span class="text-gray-600 w-6 text-right select-none mr-3 shrink-0">2</span>
+            <span class="text-gray-300 break-words">Role: {personal.role}</span>
+          </div>
+          <div class="flex hover:bg-[#161b22] px-2 py-0.5 rounded">
+            <span class="text-gray-600 w-6 text-right select-none mr-3 shrink-0">3</span>
+            <span class="text-gray-300 break-words">Location: {personal.location}</span>
+          </div>
+          <div class="flex hover:bg-[#161b22] px-2 py-0.5 rounded">
+            <span class="text-gray-600 w-6 text-right select-none mr-3 shrink-0">4</span>
+            <span class="text-gray-300 break-words">Email: {personal.email}</span>
+          </div>
+          <div class="flex hover:bg-[#161b22] px-2 py-0.5 rounded">
+            <span class="text-gray-600 w-6 text-right select-none mr-3 shrink-0">5</span>
+            <span class="text-gray-300 break-words">LinkedIn: {personal.linkedin}</span>
+          </div>
         </ActionStep>
       </div>
 
@@ -96,35 +111,38 @@ const parseDate = (dateStr) => {
           <span>Job: execute_career_steps</span>
         </div>
 
-        {experience.map((job) => (
-          <ActionStep 
-            title={`Run ${job.title} @ ${job.company}`}
-            startDate={parseDate(job.startDate)} 
-            endDate={parseDate(job.endDate)}
-            active={job.endDate === 'Present'}
-          >
-            {job.projects.map((project, projIndex) => (
-              <div class="mb-4 last:mb-0">
-                {project.name && (
-                  <p class="text-blue-300 font-semibold mb-1">
-                    # {project.name}
-                  </p>
-                )}
-                {project.achievements.map((achieve, achIndex) => (
-                  <p class="flex items-start">
-                    <span class="text-gray-500 mr-2 min-w-[75px]">10:01:{String(projIndex * 10 + achIndex + 10).padStart(2, '0')}Z</span>
-                    <span class="text-green-400 mr-2 whitespace-nowrap">[SUCCESS]</span>
-                    <span class="flex-1">{achieve}</span>
-                  </p>
-                ))}
-              </div>
-            ))}
-          </ActionStep>
-        ))}
+        {experience.map((job) => {
+          let lineCounter = 1; // reset for each job position
+          return (
+            <ActionStep 
+              title={`Run ${job.title} @ ${job.company}`}
+              startDate={parseDate(job.startDate)} 
+              endDate={parseDate(job.endDate)}
+              active={job.endDate === 'Present'}
+            >
+              {job.projects.map((project) => (
+                <div class="mb-2 last:mb-0">
+                  {project.name && (
+                    <div class="flex hover:bg-[#161b22] px-2 py-0.5 rounded">
+                      <span class="text-gray-600 w-6 text-right select-none mr-3 shrink-0">{lineCounter++}</span>
+                      <span class="text-blue-300 font-semibold break-words"># {project.name}</span>
+                    </div>
+                  )}
+                  {project.achievements.map((achieve) => (
+                    <div class="flex hover:bg-[#161b22] px-2 py-0.5 rounded">
+                      <span class="text-gray-600 w-6 text-right select-none mr-3 shrink-0">{lineCounter++}</span>
+                      <span class="text-gray-300 break-words">{achieve}</span>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </ActionStep>
+          );
+        })}
       </div>
       
-      <!-- Job 3: Skills and Certifications -->
-      <div class="mt-8">
+      <!-- Job 3: Skills and Certificates -->
+      <div class="mt-8 mb-12">
         <div class="flex items-center space-x-2 mb-4 font-bold text-lg">
           <span class="text-blue-400">▶</span>
           <span>Job: verify_dependencies</span>
@@ -132,24 +150,24 @@ const parseDate = (dateStr) => {
         
         <ActionStep title="Run analyze_skills.sh" time="2s">
           {Object.entries(skills).map(([category, items], i) => (
-            <p class="flex items-start">
-              <span class="text-gray-500 mr-2">10:05:{String(i + 10).padStart(2, '0')}Z</span>
-              <span class="text-blue-400 mr-2 whitespace-nowrap">[Skill]</span>
-              <span class="flex-1"><strong>{category}:</strong> {items.join(', ')}</span>
-            </p>
+            <div class="flex hover:bg-[#161b22] px-2 py-0.5 rounded">
+              <span class="text-gray-600 w-6 text-right select-none mr-3 shrink-0">{i + 1}</span>
+              <span class="text-gray-300 break-words"><strong>{category}:</strong> {items.join(', ')}</span>
+            </div>
           ))}
         </ActionStep>
 
         <ActionStep title="Run validate_certificates.sh" time="1s">
           {certifications.map((cert, i) => (
-            <p class="flex items-start">
-              <span class="text-gray-500 mr-2">10:06:{String(i + 10).padStart(2, '0')}Z</span>
-              <span class="text-green-400 mr-2 whitespace-nowrap">[Cert]</span>
-              <span class="flex-1">{cert}</span>
-            </p>
+            <div class="flex hover:bg-[#161b22] px-2 py-0.5 rounded">
+              <span class="text-gray-600 w-6 text-right select-none mr-3 shrink-0">{i + 1}</span>
+              <span class="text-gray-300 break-words">{cert}</span>
+            </div>
           ))}
         </ActionStep>
       </div>
+
+    </div>
 
     </div>
   </body>
