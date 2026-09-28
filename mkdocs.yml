@@ -1,0 +1,26 @@
+site_name: Ilia | Senior DevOps Engineer
+site_url: !ENV [SITE_URL, "http://127.0.0.1:8000/"]
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.instant
+
+extra_css:
+  - stylesheets/custom.css
+
+nav:
+  - Home: index.md
+  - Experience: experience.md
+  - Projects & AI: projects.md
+  - Homelab: hardware.md
+
+markdown_extensions:
+  - attr_list
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
