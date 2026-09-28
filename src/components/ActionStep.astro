@@ -58,11 +58,12 @@ if (startDate) {
     <span class="text-gray-500 text-sm ml-auto">{displayTime}</span>
   </summary>
   
-  <div class="pl-10 pr-4 py-3 text-sm text-gray-300 border-l border-gray-700 ml-4 space-y-2 cursor-text">
+  <div class="pl-2 md:pl-6 pr-2 py-2 text-xs md:text-sm text-gray-300 border-l border-gray-700 ml-4 md:ml-5 cursor-text font-mono">
     {displayRange && (
-      <p class="mb-2 text-blue-300 font-semibold text-xs tracking-wider">
-        [TIMELINE] {displayRange}
-      </p>
+      <div class="flex hover:bg-[#161b22] px-2 py-0.5 rounded">
+        <span class="text-gray-600 w-6 text-right select-none mr-3 shrink-0">*</span>
+        <span class="text-blue-300 font-semibold tracking-wider">[TIMELINE] {displayRange}</span>
+      </div>
     )}
     <slot />
   </div>
